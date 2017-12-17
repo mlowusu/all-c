@@ -29,6 +29,7 @@ for (int i=0; i<n; i++)
    return matrix;
 } 
 
+
 void freematrix(double **matrix, int n){
     for (int i=0; i<n; i++){
         free(matrix[i]);
@@ -109,6 +110,7 @@ void backsub(double **matrix, int n){
     }
 }     
 
+//validity check characters input by user
 bool isdouble(char *array){
     int i = 1;
     bool decimal = false;
@@ -142,18 +144,19 @@ void run(int n){
 
 //insert elements specified by user into matrix
 void getmatrix(double **matrix, int n){
-    char *array = malloc(sizeof(double)+1);
+    char *element = malloc(sizeof(double)+1);
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             printf("(%d,%d):\n", (i+1), j+1);
-            fgets(array, sizeof(double)+1, stdin);
-            assert(isdouble(array));
-            sscanf(array, "%lf", &matrix[i][j]);
+            fgets(element, sizeof(double)+1, stdin);
+            assert(isdouble(element));
+            sscanf(element, "%lf", &matrix[i][j]);
             //allmatrix(matrix, n);
         }
     }
 }
 
+//display right half of matrix (ie the inverse)
 void showmatrix(double **matrix, int n){
     for(int i=0; i<n; i++){
         printf("|");
